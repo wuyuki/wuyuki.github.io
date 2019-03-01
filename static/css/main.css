@@ -7,6 +7,9 @@ body .container .jumbotron-primary, body .container .well-primary, body .contain
 .label .label-primary {
     background-color: #7db2cc;
 }
+.btn-info {
+    background-color: #4f7feb;
+}
 .main.outer{padding-top: 50px;}
 .header-panel.shadow-z-2 {
     /* background-color: #009587; */
