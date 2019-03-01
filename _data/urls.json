@@ -1,8 +1,8 @@
 [
   {
-    "text": "Home",
+    "text": "Blog",
     "url": "/",
-    "icon": "fa-home",
+    "icon": "fa-keyboard-o",
     "layout": "post"
   },
   {
@@ -18,7 +18,7 @@
   {
     "text": "Resume",
     "url": "/#",
-    "icon": "fa-graduation-cap",
+    "icon": "fa-graduation-cap"
   },
   {
     "text": "Github",
