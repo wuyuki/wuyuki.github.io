@@ -68,6 +68,11 @@ p.info a {
     /* background: #009688; */
     background-color: #78868f;
 }
+
+.menu {
+    background-color: #78868f;
+}
+
 .menu ul li {
     list-style: none;
     margin: 5px 0;
@@ -95,13 +100,15 @@ li.current-menu-item:before {
     display: block;
     text-decoration: none;
     padding: 0 0 0 10px;
-    color: #fff;
+    /* color: #fff; */
+    color: #c2bab6;
 }
 .home-subtitle {
     font-size: 26px;
     margin-bottom: 32px;
     margin-top: 5px;
-    color: #01c87b;
+    /* color: #01c87b; */
+    color: #78868f;
     font-weight: 300;
 }
 h2.blog-title-pro{color: #fff;}
