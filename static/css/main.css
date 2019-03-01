@@ -1,7 +1,10 @@
 a, a:focus, a:hover {
     color: #7db2cc;
 }
-body .container .jumbotron-primary, body .container .well-primary, body .container-fluid .jumbotron-primary, body .container-fluid .well-primary {
+/* body .container .jumbotron-primary, body .container .well-primary, body .container-fluid .jumbotron-primary, body .container-fluid .well-primary {
+    background-color: #78868f;
+} */
+#bs-example-navbar-collapse-1 {
     background-color: #78868f;
 }
 .pproject-content > tags{
