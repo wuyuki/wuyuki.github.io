@@ -1,9 +1,8 @@
 a, a:focus, a:hover {
     color: #7db2cc;
 }
-.btn-group-raised .btn.btn-info, .btn-group-raised .input-group-btn .btn.btn-info, .btn.btn-fab.btn-info, .btn.btn-raised.btn-info, .input-group-btn .btn.btn-fab.btn-info, .input-group-btn .btn.btn-raised.btn-info {
-    background-color: #4f7feb;
-    color: rgba(255,255,255,.84);
+body .container .jumbotron-primary, body .container .well-primary, body .container-fluid .jumbotron-primary, body .container-fluid .well-primary {
+    background-color: #78868f;
 }
 .label.label-primary {
     background-color: #7db2cc;
