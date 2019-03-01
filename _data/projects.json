@@ -8,7 +8,7 @@
 	},
 	{
 		"name": "Word Cloud",
-		"image": "WordCloud.png",
+		"image": "Wordcloud.png",
 		"url": "https://www.originlab.com/fileExchange/details.aspx?fid=471",
 		"date": "Mar 2019",
 		"tags": ["Python", "jQuery", "Bootstrap", "Data Analysis", "Data Visualization", "Statistics", "Origin"]
