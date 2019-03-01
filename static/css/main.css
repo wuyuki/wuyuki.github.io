@@ -10,7 +10,7 @@ body .container .jumbotron-primary, body .container .well-primary, body .contain
 .btn-group-raised .btn.btn-info, .btn-group-raised .input-group-btn .btn.btn-info, .btn.btn-fab.btn-info, .btn.btn-raised.btn-info, .input-group-btn .btn.btn-fab.btn-info, .input-group-btn .btn.btn-raised.btn-info {
     background-color: #4f7feb;
 }
-.btn-group-raised .btn.btn-info, .btn-group-raised .input-group-btn .btn.btn-info, .btn.btn-fab.btn-info, .btn.btn-raised.btn-info, .input-group-btn .btn.btn-fab.btn-info, .input-group-btn .btn.btn-raised.btn-info:hover {
+.btn-group-raised .btn.btn-info:hover, .btn-group-raised .input-group-btn .btn.btn-info:hover, .btn.btn-fab.btn-info:hover, .btn.btn-raised.btn-info:hover, .input-group-btn .btn.btn-fab.btn-info:hover, .input-group-btn .btn.btn-raised.btn-info:hover {
     background-color: #4f7feb;
 }
 
