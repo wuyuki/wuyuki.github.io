@@ -4,6 +4,9 @@ a, a:focus, a:hover {
 body .container .jumbotron-primary, body .container .well-primary, body .container-fluid .jumbotron-primary, body .container-fluid .well-primary {
     background-color: #78868f;
 }
+.label .label-primary {
+    background-color: #7db2cc;
+}
 .main.outer{padding-top: 50px;}
 .header-panel.shadow-z-2 {
     /* background-color: #009587; */
