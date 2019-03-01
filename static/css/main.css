@@ -1,3 +1,6 @@
+a, a:focus, a:hover {
+    color: #7db2cc;
+}
 .main.outer{padding-top: 50px;}
 .header-panel.shadow-z-2 {
     /* background-color: #009587; */
@@ -68,16 +71,13 @@ p.info a {
     /* background: #009688; */
     background-color: #78868f;
 }
-
-.menu {
+.menu ul{
     background-color: #78868f;
 }
-
 .menu ul li {
     list-style: none;
     margin: 5px 0;
 }
-
 .menu ul li a:hover, .menu ul li a:focus, li.current-menu-item > a{
     /* background: #007D72; */
     background: #90c0d9;
@@ -100,8 +100,7 @@ li.current-menu-item:before {
     display: block;
     text-decoration: none;
     padding: 0 0 0 10px;
-    /* color: #fff; */
-    color: #c2bab6;
+    color: #fff;
 }
 .home-subtitle {
     font-size: 26px;
