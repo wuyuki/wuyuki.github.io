@@ -3,20 +3,23 @@ description: My Personal Blog
 author: Yuki Wu
 logo: /static/img/avatar.jpg
 github: https://github.com/wuyuki
-about: Share ideas, share life
+about: Share ideas, share life ^_^
+keyword: "yuki, wuyuki, yukiwu, blog, data analysis" 
 
 baseurl: ""
 url: "https://wuyuki.github.io/"
 
 allowsearch: true
 
-disqus_shortname: aboutyuki
-google_analytics: UA-72862926-1
+# disqus_shortname: aboutyuki
+# google_analytics: UA-72862926-1
 
-share:
-  twitter_username: \#
-  fb_appid: 000000000000
+# share:
+#   twitter_username: \#
+#   fb_appid: 000000000000
 
+# SNS settings
+github_username: wuyuki
 
 enableTags: true
 tagarray: []

@@ -22,13 +22,13 @@
   },
   {
     "text": "Github",
-    "url": "/#",
+    "url": "https://github.com/wuyuki",
     "icon": "fa-github"
   },
-  {
-    "text": "XML Feed",
-    "url": "/feed.xml",
-    "icon": "fa-feed",
-    "target": _blank
-  }
+  // {
+  //   "text": "XML Feed",
+  //   "url": "/feed.xml",
+  //   "icon": "fa-feed",
+  //   "target": _blank
+  // }
 ]
