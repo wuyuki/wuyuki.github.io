@@ -1,16 +1,14 @@
 a, a:focus, a:hover {
     color: #7db2cc;
 }
-/* body .container .jumbotron-primary, body .container .well-primary, body .container-fluid .jumbotron-primary, body .container-fluid .well-primary {
-    background-color: #78868f;
-} */
-#bs-example-navbar-collapse-1 {
-    background-color: #78868f;
+.btn-group-raised .btn.btn-info, .btn-group-raised .input-group-btn .btn.btn-info, .btn.btn-fab.btn-info, .btn.btn-raised.btn-info, .input-group-btn .btn.btn-fab.btn-info, .input-group-btn .btn.btn-raised.btn-info {
+    background-color: #4f7feb;
+    color: rgba(255,255,255,.84);
 }
-.pproject-content > tags{
+.label.label-primary {
     background-color: #7db2cc;
 }
-.project-footer > .btn-info {
+.btn-group-raised .btn.btn-info, .btn-group-raised .input-group-btn .btn.btn-info, .btn.btn-fab.btn-info, .btn.btn-raised.btn-info, .input-group-btn .btn.btn-fab.btn-info, .input-group-btn .btn.btn-raised.btn-info {
     background-color: #4f7feb;
 }
 
