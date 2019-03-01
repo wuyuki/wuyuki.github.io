@@ -71,7 +71,7 @@ p.info a {
     /* background: #009688; */
     background-color: #78868f;
 }
-.menu ul{
+.menu .well-primary{
     background-color: #78868f;
 }
 .menu ul li {
