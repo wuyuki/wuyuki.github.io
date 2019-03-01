@@ -1,16 +1,16 @@
 title: Yuki Wu
 description: My Personal Blog
 author: Yuki Wu
-logo: /hcz-jekyll-blog/static/img/avatar.png
+logo: /static/img/avatar.jpg
 github: https://github.com/wuyuki
-about: Freelance developer
+about: Share ideas, share life
 
 baseurl: ""
 url: "https://wuyuki.github.io/"
 
 allowsearch: true
 
-disqus_shortname: aboutashu
+disqus_shortname: aboutyuki
 google_analytics: UA-72862926-1
 
 share:
