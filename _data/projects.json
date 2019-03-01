@@ -5,5 +5,12 @@
 		"url": "https://www.originlab.com/FileExchange/details.aspx?fid=455",
 		"date": "Mar 2019",
 		"tags": ["Vue.js", "Data Analysis", "Statistics", "Origin"]
+	},
+	{
+		"name": "Word Cloud",
+		"image": "WordCloud.png",
+		"url": "https://www.originlab.com/fileExchange/details.aspx?fid=471",
+		"date": "Mar 2019",
+		"tags": ["Python", "jQuery", "Bootstrap", "Data Analysis", "Data Visualization", "Statistics", "Origin"]
 	}
 ]
