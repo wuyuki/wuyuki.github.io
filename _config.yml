@@ -3,8 +3,8 @@ description: My Personal Blog
 author: Yuki Wu
 logo: /static/img/avatar.jpg
 github: https://github.com/wuyuki
-about: Share ideas, share life
-keyword: "yuki, wuyuki, yukiwu, blog, data analysis" 
+about: Share ideas, share tips, share life.
+keyword: "yuki, wuyuki, yukiwu, blog, data analysis, data visualization" 
 
 baseurl: ""
 url: "https://wuyuki.github.io/"
