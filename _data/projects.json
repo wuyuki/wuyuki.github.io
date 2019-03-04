@@ -12,5 +12,12 @@
 		"url": "https://www.originlab.com/fileExchange/details.aspx?fid=471",
 		"date": "Mar 2019",
 		"tags": ["Python", "jQuery", "Bootstrap", "Data Analysis", "Data Visualization", "Statistics", "Origin"]
+	},
+	{
+		"name": "Fitting Function Library",
+		"image": "FittingFunctionLibrary.png",
+		"url": "https://www.originlab.com/FileExchange/details.aspx?fid=490",
+		"date": "Mar 2019",
+		"tags": ["Vue.js", "iView", "Data Analysis", "Regression", "Fitting", "Origin"]
 	}
 ]

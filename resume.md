@@ -4,6 +4,9 @@ title: Resume
 permalink: /resume/
 ---
 
-### Name: Yuki Wu
-### Email: wu.yuting@outlook.com
-
+<h3> Contact Me </h3>
+<hr/>
+<blockquote>
+<p>Name: Yuki Wu</p>
+<p>Email: wu.yuting@outlook.com</p>
+</blockquote>
