@@ -5,6 +5,8 @@ permalink: /about/
 ---
 
 ## I’ll be:
+<hr/>
+
 * Posting ideas and tips I find interesting
 
 * Contributing to discussion of data science and coding
