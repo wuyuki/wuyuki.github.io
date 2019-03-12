@@ -19,7 +19,7 @@ gitalk:
   enable: true    
   clientID: 9f5cca0eef6965a0d11d                           
   clientSecret: dfc9aeb6b2aa9092a841230311118d10e7805a5d    
-  repo: https://wuyuki.github.io/   
+  repo: wuyuki.github.io   
   owner: wuyuki    
   admin: wuyuki
   distractionFreeMode: true 
