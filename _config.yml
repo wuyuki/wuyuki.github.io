@@ -14,6 +14,16 @@ allowsearch: true
 # disqus_shortname: aboutyuki
 # google_analytics: UA-72862926-1
 
+# Gitalk
+gitalk:
+  enable: true    
+  clientID: 9f5cca0eef6965a0d11d                           
+  clientSecret: dfc9aeb6b2aa9092a841230311118d10e7805a5d    
+  repo: https://wuyuki.github.io/   
+  owner: wuyuki    
+  admin: wuyuki
+  distractionFreeMode: true 
+
 # share:
 #   twitter_username: \#
 #   fb_appid: 000000000000
