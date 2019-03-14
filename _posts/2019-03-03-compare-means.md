@@ -14,14 +14,14 @@ relatedwords: statistics
 其实均值比较还有很多检验方法，要怎么选？脑阔疼！
 
 今天终于花了点时间自己总结了一下：
-***
+<hr/>
 
-##### Q1: 数据是否符合正态分布
+<strong>Q1: 数据是否符合正态分布<strong>
 
 <blockquote>
-	<h5>Q1-A1 是</h5>
+	<strong>Q1-A1 是<strong>
 	<br/>
-	<h6>Q2: 数据有多少分组</h6>
+	<strong>Q2: 数据有多少分组<strong>
 	<br/>
 		<strong>Q1-A1-Q2-A1 没有分组</strong>
 		<blockquote>	
@@ -111,9 +111,9 @@ relatedwords: statistics
 </blockquote>
 <br/>
 <blockquote>
-	<h5>Q1-A2 否</h5>
+	<strong>Q1-A2 否<strong>
 	<br/>
-		<h6>Q7: 数据有多少分组？</h6>
+		<strong>Q7: 数据有多少分组？<strong>
 		<br/>
 			<strong>Q1-A2-Q7-A1 没有分组</strong>
 			<br/>
