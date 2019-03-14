@@ -14,96 +14,158 @@ relatedwords: statistics
 其实均值比较还有很多检验方法，要怎么选？脑阔疼！
 
 今天终于花了点时间自己总结了一下：
-<hr/>
+***
 
-* Q1: 数据是否符合正态分布？
+##### Q1: 数据是否符合正态分布
 
-	* Q1-A1 是
-
-		* Q2: 数据有多少分组？
-
-			* Q1-A1-Q2-A1 没有分组
-				* One-Sample t-Test
-				* One-Sample Equivalence Test
-
-			* Q1-A1-Q2-A2 单组双水平
-
-				* Q3: 每个受试者是否进行过两次重复实验?
-
-					* Q1-A1-Q2-A2-Q3-A1 是
-						* Pair-Sample t-Test
-						* Pair-Sample Equivalence Test
-						* Hotelling's T-squared Test
-
-					* Q1-A1-Q2-A2-Q3-A2 否
-						* Two-Sample t-Test
-						* Two-Sample Equivalence Test
-						* Hotelling's T-squared Test
-
-			* Q1-A1-Q2-A3 单组多水平
-
-				* Q4: 每个受试者是否进行过多次重复实验？
-
-					* Q1-A1-Q2-A3-Q4-A1 是
-						* One-Way Repeated Measures ANOVA
-
-					* Q1-A1-Q2-A3-Q4-A2 否
-						* One-Way ANOVA	
-
-			* Q1-A1-Q2-A4 两个分组
-
-				* Q5: 每个受试者是否进行过多次重复实验？
-
-					* Q1-A1-Q2-A4-Q5-A1 是
-						* Two-Way Repeated Measures ANOVA
-
-					* Q1-A1-Q2-A4-Q5-A2 否
-						* Two-Way ANOVA
-
-			* Q1-A1-Q2-A5  三个分组
-
-				* Q6: 每个受试者是否进行过多次重复实验？
-
-					* Q1-A1-Q2-A5-Q6-A1  是
-						* Three-Way Repeated Measures ANOVA
-
-					* Q1-A1-Q2-A5-Q6-A2 否
-						* Three-Way ANOVA
-						
-			* Q1-A1-Q2-A6 任意数量的组
-				* General Linear Regression
-	
-	* Q1-A2 否
-
-		* Q7: 数据有多少分组？
-
-			* Q1-A2-Q7-A1 没有分组
+<blockquote>
+	<h5>Q1-A1 是</h5>
+	<br/>
+	<h6>Q2: 数据有多少分组</h6>
+	<br/>
+		<strong>Q1-A1-Q2-A1 没有分组</strong>
+		<blockquote>	
+			* One-Sample t-Test
+			<br/>
+			* One-Sample Equivalence Test
+		</blockquote>
+		<br/>
+		<strong>Q1-A1-Q2-A2 单组双水平</strong>
+		<br/>
+		<blockquote>
+		Q3: 每个受试者是否进行过两次重复实验?
+		<br/>
+			Q1-A1-Q2-A2-Q3-A1 是
+			<br/>
+			<blockquote>
+				* Pair-Sample t-Test
+				<br/>
+				* Pair-Sample Equivalence Test
+				<br/>
+				* Hotelling's T-squared Test
+				<br/>
+			</blockquote>
+			<br/>
+			* Q1-A1-Q2-A2-Q3-A2 否
+			<br/>
+			<blockquote>
+				* Two-Sample t-Test
+				<br/>
+				* Two-Sample Equivalence Test
+				<br/>
+				* Hotelling's T-squared Test
+			</blockquote>
+		</blockquote>
+		<br/>
+		<strong>Q1-A1-Q2-A3 单组多水平</strong>
+		<br/>
+		<blockquote>
+			* Q4: 每个受试者是否进行过多次重复实验？
+			<br/>
+				* Q1-A1-Q2-A3-Q4-A1 是
+			<blockquote>	
+					* One-Way Repeated Measures ANOVA
+			</blockquote>
+			<br/>
+				* Q1-A1-Q2-A3-Q4-A2 否
+			<blockquote>
+					* One-Way ANOVA	
+			</blockquote>
+		</blockquote>
+		<br/>
+		<strong>Q1-A1-Q2-A4 两个分组</strong>
+		<br/>
+		<blockquote>
+			* Q5: 每个受试者是否进行过多次重复实验？
+			<br/>
+				* Q1-A1-Q2-A4-Q5-A1 是
+				<blockquote>
+					* Two-Way Repeated Measures ANOVA
+				</blockquote>
+				<br/>
+				* Q1-A1-Q2-A4-Q5-A2 否
+				<blockquote>
+					* Two-Way ANOVA
+				</blockquote>
+		</blockquote>
+		<br/>
+		<strong>Q1-A1-Q2-A5  三个分组</strong>
+		<blockquote>
+			* Q6: 每个受试者是否进行过多次重复实验？
+			<br/>
+				* Q1-A1-Q2-A5-Q6-A1  是
+				<blockquote>
+					* Three-Way Repeated Measures ANOVA
+				</blockquote>
+				<br/>
+				* Q1-A1-Q2-A5-Q6-A2 否
+				<blockquote>
+					* Three-Way ANOVA
+				</blockquote>
+		</blockquote>
+		<br/>	
+		<strong>Q1-A1-Q2-A6 任意数量的组</strong>
+		<blockquote>
+			* General Linear Regression
+		</blockquote>
+</blockquote>
+<br/>
+<blockquote>
+	<h5>Q1-A2 否</h5>
+	<br/>
+		<h6>Q7: 数据有多少分组？</h6>
+		<br/>
+			<strong>Q1-A2-Q7-A1 没有分组</strong>
+			<br/>
+			<blockquote>
 				* One-Sample Wilcoxon Signed Rank Test
-
-			* Q1-A2-Q7-A2 单组双水平
-
+			</blockquote>
+			<br/>
+			<strong>Q1-A2-Q7-A2 单组双水平<strong>
+			<br/>
+			<blockquote>
 				* Q8: 每个受试者是否进行过两次重复实验?
-
+				<br/>
 					* Q1-A2-Q7-A2-Q8-A1 是
+					<blockquote>
 						* Paired-Sample Sign Test
+						<br/>
 						* Paired-Sample Wilcoxon Signed Rank Test
+						<br/>
 						* (NPH) Paired Samples
-
+					</blockquote>
+					<br/>
 					* Q1-A2-Q7-A2-Q8-A2 否
+					<blockquote>
 						* Two-Sample Kolmogorov-Smirnov Test
+						<br/>
 						* Mann-Whitney Test
+						<br/>
 						* (NPH) Two Independent Samples
+						<br/>
 						* Cochran's Q Test
-
-			* Q1-A2-Q7-A3 单组多水平
-
+					</blockquote>
+			</blockquote>
+			<br/>
+			<strong>Q1-A2-Q7-A3 单组多水平<strong>
+			<br/>
+			<blockquote>
 				* Q9: 每个受试者是否进行过多次重复实验？
-
+				<br/>
 					* Q1-A2-Q7-A2-Q9-A1 是
+					<blockquote>
 						* Friedman ANOVA
-
+					</blockquote>
+					<br/>
+					<blockquote>
 					* Q1-A2-Q7-A2-Q9-A2 否
 						* Kruskal-Wallis ANOVA
+						<br/>
 						* Mood's Median Test
+						<br/>
 						* (NPH) K Independent Samples
+						<br/>
 						* Cochran's Q Test
+					</blockquote>
+			</blockquote>
+</blockquote>
