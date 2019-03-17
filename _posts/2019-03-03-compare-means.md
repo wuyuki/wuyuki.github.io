@@ -3,7 +3,7 @@ layout: post
 title:  "How to Compare Means (均值比较)"
 date:   2019-03-03 20:00:00
 categories: data-analysis
-keywords: data-analysis, statistics, t-Test, ANOVA, mean, variance, proportion
+keywords: data-analysis, statistics, t-Test, ANOVA, mean
 relatedwords: statistics
 ---
 
