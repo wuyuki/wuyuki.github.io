@@ -12,7 +12,7 @@ url: "https://wuyuki.github.io/"
 allowsearch: true
 
 # disqus_shortname: aboutyuki
-# google_analytics: UA-72862926-1
+google_analytics: UA-136415551-1
 
 # Gitalk
 gitalk:
