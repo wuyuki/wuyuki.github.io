@@ -9,14 +9,19 @@ relatedwords: kaggle
 
 [数据](\assets\2019-03-08-kaggle-airbnb\data.zip)来源: [Airbnb](https://www.kaggle.com/c/airbnb-recruiting-new-user-bookings)
 
-解决问题：通过分析，预测新用户的预定目的地，给与新用户合适的消息推送。
+情景：预测新用户的预定目的地，给与新用户合适的消息推送。
+
+<hr/>
 
 #### Data Exploration
 
 通常在开始一项数据分析项目之前，我会思考：
+<blockquote>
 * 这份数据是否是正确的？
 * 这份数据是否有异常部分，例如某段时间的异常波动等？
 * 这份数据是否需要增加或者删除部分数据使其更符合现实？
+</blockquote>
+
 <hr/>
 
 * Exam datasets
@@ -47,14 +52,14 @@ head(data_all_user)
 
 * Missing Data
 
-1. 在 R 中缺失值以 NA 表示，但是可以看见 column(gender) 中有 “-unknown-” 的表示，所以要将其重编码为缺失值
+  1. 在 R 中缺失值以 NA 表示，但是可以看见 column(gender) 中有 “-unknown-” 的表示，所以要将其重编码为缺失值
 
 {% highlight r %} 
 #Replace missing value
 data_all_user$gender[data_all_user$gender == "-unknown-"] <- NA
 {% endhighlight %}
 
-2. 通过缺失值检查，可以发现年龄与性别的缺失值比例很高
+  2. 通过缺失值检查，可以发现年龄与性别的缺失值比例很高
 
 {% highlight r %} 
 #Calculate the number of missing data
@@ -62,7 +67,7 @@ data_NA_proportion <- colSums(is.na(data_all_user)) / dim(data_all_user)[1]
 print(data_NA_proportion)
 {% endhighlight %}
 
-3. 检查年龄变量，我们可以发现某一部分用户的年龄是不真实的.当用户年龄大于100时，50%以上的用户年龄大于2014，基本不可靠；当用户年龄小于18时，50%以上的用户年龄大于16，勉强符合实际。因此需要对不可靠的年龄数据进行删除。
+  3. 检查年龄变量，我们可以发现某一部分用户的年龄是不真实的.当用户年龄大于100时，50%以上的用户年龄大于2014，基本不可靠；当用户年龄小于18时，50%以上的用户年龄大于16，勉强符合实际。因此需要对不可靠的年龄数据进行删除。
 
 {% highlight r %} 
 #Replace age>95 && age < 12 by missing value
@@ -70,6 +75,8 @@ data_all_user$age[data_all_user$age > 95] <- NA
 data_all_user$age[data_all_user$age < 13] <- NA
 summary(data_all_user$age)
 {% endhighlight %}
+
+<hr/>
 
 #### Data Visulization
 
