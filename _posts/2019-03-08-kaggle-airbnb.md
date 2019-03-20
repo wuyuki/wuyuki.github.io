@@ -158,7 +158,7 @@ p +geom_bar(stat = "count") + xlab("Platform") + ylab("Count") + theme_bw()
 #### To be Continue...
 
 
-#### Sample Code
+### Sample Code
 <hr/>
 
 [download here](\assets\2019-02-28-word-cloud-4\AirbnbNewUserBooking.zip)
