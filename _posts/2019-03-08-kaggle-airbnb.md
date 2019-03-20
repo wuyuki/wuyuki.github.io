@@ -131,7 +131,7 @@ p +geom_bar(stat = "count", position = "dodge") + xlab("Country") + ylab("Count"
 分析用户创建账户的时间，可发现在2012-2014年间Airbnb的用户快速的增长而且用户创建账户的时间以周中为主（即周二，周三，周四）。
 ![Year](\assets\2019-03-08-kaggle-airbnb\Year.png)
 
-![Weekday](\assets\2019-03-08-kaggle-airbnb\Weekday.png)
+![Weekday](\assets\2019-03-08-kaggle-airbnb\Day.png)
 
 {% highlight r %} 
 #Date & Account
