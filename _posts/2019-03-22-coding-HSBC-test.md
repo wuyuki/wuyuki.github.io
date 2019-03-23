@@ -8,16 +8,21 @@ relatedwords: coding
 ---
 
 一紧张就胃疼，一胃疼就脑袋空白……
+
 还有 R Studio 的 Help command 和自动补全太强大，然后离开他们就不会手写 Script。
+
 全程懊恼悲伤……
+
 但是还是要懂得从失败和错误中学习。
 
 复盘！
+<br/>
 
 #### Question1
 <hr/>
 
 计算字符串中（例如 f=“12adb67acbdgd”）含有 “a?b” 的个数 （如例子结果为2）。
+
 {% highlight r %} 
 # input string
 print('Please enter the strin here：')
@@ -28,22 +33,20 @@ result <- length(count[[1]])
 #output result
 print(result)
 {% endhighlight %}
-
-
-
+<br/>
 
 #### Question2
 <hr/>
 
 计算某用户所在的组的另一性别的用户的分数。
 
-| Team | Gender | Score |
-|------|--------|-------|
-|  1   |  Male  |  81   |
-|  2   | Female |  65   |
-|  2   | Female |  78   |
-|  1   | Female |  92   |
-|  2   |  Male  |  85   |
+| Team |-| Gender |-| Score |
+|------|-|--------|-|-------|
+|  1   | |  Male  | |  81   | 
+|  2   | | Female | |  65   |
+|  2   | | Female | |  78   |
+|  1   | | Female | |  92   |
+|  2   | | Male   | |  85   |
 
 {% highlight r %} 
 # build the data frame
@@ -62,6 +65,7 @@ result <- data_user$score[data_user$team == team & data_user$gender != gender]
 # output result
 print(result)
 {% endhighlight %}
+<br/>
 
 #### 反省
 <hr/>
