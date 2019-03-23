@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "一次 R 的小测验"
-date:   2019-03-05 20:00:00
+date:   2019-03-22 20:00:00
 categories: miscellaneous
 keywords: R, text mining
 relatedwords: coding
