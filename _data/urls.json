@@ -2,23 +2,23 @@
   {
     "text": "Blog",
     "url": "/",
-    "icon": "fa-keyboard-o",
+    "icon": "fa-edit",
     "layout": "post"
   },
   {
     "text": "About",
     "url": "/about/",
-    "icon": "fa-comments"
+    "icon": "facomment-comment-alt-smile"
   },
   {
     "text": "Projects",
     "url": "/projects/",
-    "icon": "fa-desktop"
+    "icon": "fa-analytics"
   },
   {
     "text": "Training",
     "url": "/training/",
-    "icon": "fa-graduation-cap"
+    "icon": "fa-chalkboard-teacher"
   },
   {
     "text": "Github",
