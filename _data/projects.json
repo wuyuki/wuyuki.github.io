@@ -19,5 +19,12 @@
 		"url": "https://www.originlab.com/FileExchange/details.aspx?fid=490",
 		"date": "Mar 2019",
 		"tags": ["Vue.js", "iView", "Data Analysis", "Regression", "Fitting", "Origin"]
+	},
+	{
+		"name": "Pulse Integration",
+		"image": "Pulse Integration.png",
+		"url": "https://www.originlab.com/fileExchange/details.aspx?fid=451",
+		"date": "Mar 2019",
+		"tags": ["Data Analysis", "Signal Processing", "Origin"]
 	}
 ]
