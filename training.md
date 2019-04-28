@@ -3,7 +3,7 @@ layout: page
 title: Training
 permalink: /training/
 ---
-<h3> Few of training courses I offered to the public. <h3>
+<h3> Few of training workshops I conducted to the public. <h3>
 <hr/>
 <blockquote>
 <img src="/static/training/SHTU.svg" alt="ShanghaiTech University" width="150" />
