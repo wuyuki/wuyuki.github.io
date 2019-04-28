@@ -8,17 +8,17 @@
   {
     "text": "About",
     "url": "/about/",
-    "icon": "fa-comment-dots"
+    "icon": "fa-comments"
   },
   {
     "text": "Projects",
     "url": "/projects/",
-    "icon": "fa-laptop-code"
+    "icon": "fa-laptop"
   },
   {
     "text": "Training",
     "url": "/training/",
-    "icon": "fa-chalkboard-teacher"
+    "icon": "fa-users"
   },
   {
     "text": "Github",
