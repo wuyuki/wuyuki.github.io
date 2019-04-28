@@ -8,12 +8,12 @@
   {
     "text": "About",
     "url": "/about/",
-    "icon": "facomment-comment-alt-smile"
+    "icon": "fa-comment-dots"
   },
   {
     "text": "Projects",
     "url": "/projects/",
-    "icon": "fa-analytics"
+    "icon": "fa-laptop-code"
   },
   {
     "text": "Training",
