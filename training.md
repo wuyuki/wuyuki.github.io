@@ -6,7 +6,7 @@ permalink: /training/
 <h3> Few of my public training courses. <h3>
 <hr/>
 <blockquote>
-<img src="/static/training/SHTU.svg" alt="ShanghaiTech University" width="400" />
+<img src="/static/training/SHTU.svg" alt="ShanghaiTech University" width="150" />
 <strong>2019 ShanghaiTech University</strong>
 <p> </p>
 <p>Topic: Data Visualization</p>
@@ -16,7 +16,7 @@ permalink: /training/
 </blockquote>
 
 <blockquote>
-<img src="/static/training/SHTU.svg" alt="ShanghaiTech University" width="400"/>
+<img src="/static/training/SHTU.svg" alt="ShanghaiTech University" width="150"/>
 <strong>2018 ShanghaiTech University</strong>
 <p> </p>
 <p>Topic: Analysis - Regression</p>
@@ -25,7 +25,7 @@ permalink: /training/
 </blockquote>
 
 <blockquote>
-<img src="/static/training/USTC.svg" alt="University of Science and Technology of China" width="400"/>
+<img src="/static/training/USTC.svg" alt="University of Science and Technology of China" width="150"/>
 <strong>2018 University of Science and Technology of China</strong>
 <p> </p>
 <p>Topic: Data Visualization</p>
@@ -34,7 +34,7 @@ permalink: /training/
 </blockquote>
 
 <blockquote>
-<img src="/static/training/PKU.png" alt="Peking University" width="400"/>
+<img src="/static/training/PKU.png" alt="Peking University" width="150"/>
 <strong>2018 Peking University</strong>
 <p> </p>
 <p>Analysis: Regression</p>
@@ -43,7 +43,7 @@ permalink: /training/
 </blockquote>
 
 <blockquote>
-<img src="/static/training/USTC.svg" alt="University of Science and Technology of China" width="400"/>
+<img src="/static/training/USTC.svg" alt="University of Science and Technology of China" width="150"/>
 <strong>2017 University of Science and Technology of China</strong>
 <p> </p>
 <p>Topic: Analysis - Curve Fitting and Peak Analysis</p>
