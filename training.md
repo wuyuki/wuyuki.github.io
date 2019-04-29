@@ -3,7 +3,7 @@ layout: page
 title: Training
 permalink: /training/
 ---
-<h3> Few of training workshops I conducted to the public. <h3>
+<h4> Few of training workshops I conducted to the public. </h4>
 <hr/>
 
 <blockquote>
