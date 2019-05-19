@@ -9,11 +9,16 @@ relatedwords: kaggle
 
 ### Score
 <hr/>
+
+最近用随机森林玩了 Kaggle 的泰坦尼克号项目，顺便记录一下。
+
 Kaggle - Titanic: Machine Learning from Disaster
+
 Ongoing: Top 8%
 
 ### Details
 <hr/>
+
 ![01](\assets\2019-03-24-kaggle-titanic\001.png)
 ![02](\assets\2019-03-24-kaggle-titanic\002.png)
 ![03](\assets\2019-03-24-kaggle-titanic\003.png)
@@ -39,4 +44,5 @@ Ongoing: Top 8%
 
 ### Sample Code
 <hr/>
+
 [download here](\assets\2019-03-24-kaggle-titanic\R-titanic.zip)
