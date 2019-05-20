@@ -2,7 +2,7 @@
 layout: post
 title:  "Survival on the Titanic"
 date:   2019-03-24 20:00:00
-categories: Kaggle, R, data-analysis
+categories: kaggle
 keywords: data-analysis, random forest
 relatedwords: kaggle
 ---
