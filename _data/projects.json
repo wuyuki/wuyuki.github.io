@@ -21,10 +21,10 @@
 		"tags": ["Vue.js", "iView", "Data Analysis", "Regression", "Fitting", "Origin"]
 	},
 	{
-		"name": "Pulse Integration",
-		"image": "Pulse Integration.png",
-		"url": "https://www.originlab.com/fileExchange/details.aspx?fid=451",
-		"date": "Mar 2019",
-		"tags": ["Data Analysis", "Signal Processing", "Origin"]
+		"name": "3D Wind Rose",
+		"image": "3D Wind Rose.png",
+		"url": "https://www.originlab.com/fileExchange/details.aspx?fid=507",
+		"date": "Apr 2019",
+		"tags": ["Vue.js", "BootstrapVue", "Origin"]
 	}
 ]
