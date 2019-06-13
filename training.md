@@ -7,6 +7,15 @@ permalink: /training/
 <hr/>
 
 <blockquote>
+<img src="/static/training/SCUT.svg" alt="South China University of Technology" width="150" />
+<strong>2019 South China University of Technology</strong>
+<p> </p>
+<p>Topic: Data Visualization</p>
+<p>Date: June 19, 2019</p>
+<p>Institution: State Key Laboratory of Luminescent Materials and Devices (SKLLMD)</p>
+</blockquote>
+
+<blockquote>
 <img src="/static/training/SHTU.svg" alt="ShanghaiTech University" width="150" />
 <strong>2019 ShanghaiTech University</strong>
 <p> </p>
@@ -68,4 +77,5 @@ permalink: /training/
 <p>Date: Apirl 17, 2017</p>
 <a href="http://library.shanghaitech.edu.cn/_upload/article/files/38/c8/4e618c7f4eefb9cdb2162382745a/a97cccd2-bb98-4561-b900-43ae9d159ac3.pdf">More Info >></a>
 </blockquote>
+
 
