@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multiple Column Selection</title>
+    <style>
+    body {
+        font-size: 12px;
+        color: #566270;
+        margin: 0;
+        overflow: hidden;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .selection_box {
+        width: 30%;
+        background-color: #fffff3;
+    }
+    fieldset {
+        border: solid #a593e0 2px;
+        border-left: none; 
+        border-right: none;
+        border-bottom: none;
+    }
+    fieldset legend {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .row {
+        margin: 0.6% 0;
+    }
+    .column {
+        display: inline-block;
+    }
+    button {
+        color: #a593e0;
+        font-size: 9px;
+        font-weight: 600;
+        border: solid 1px #a593e0;
+        border-radius: 3px;
+        height: 0.9rem;
+        min-width: 2rem;
+        background-color: #fffff3;
+    }
+    button:hover {
+        color:#fffff3;
+        background-color: #a593e0;
+    }
+    button:disabled{
+        cursor: not-allowed;
+    }
+    table {
+        display:block;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: calc(100vh - 7em);
+    }
+    td {
+        height: 0.8rem;
+        padding-right: 0.3rem;
+    }
+    td:nth-child(2):hover{
+        color: #fffff3;
+        background: #a593e0;
+        opacity: 0.5;
+    }
+    .selection_mark{
+        color: #a593e0;
+        font-size:80%;
+    }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div class="selection_box">
+        <multi-select :legend_name="legend_name"
+                    :columns="columns"
+                    :selected_columns="selected_columns"
+                    @update_selected_columns="onSelectedColumnsChange">
+        </multi-select>
+    </div>
+</div>
+
+<!-- <script src="vue.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script type="text/x-template" id="multi-select-template">
+    <fieldset >
+        <legend>{{legend_name}}</legend>
+            <div class="row" name="button_group">
+                <button class="column" @click="ClickSelectAllButton" :disabled="selected_columns.length == columns.length">Select All</button>
+                <button class="column" @click="ClickClearAllButton" :disabled="selected_columns.length < 1">Clear All</button>
+            </div>
+            <table>
+                <tr v-for = "(item,index) in columns" 
+                    @click.exact="AddToOrDeleteFromSelectedColumns"
+                    @click.shift.exact="AddMultipleToSelectedColumns"
+                    @click.ctrl.exact="AddToOrDeleteFromSelectedColumns"
+                    :title="function(item){if(item.longname){return 'Short Name: ' + item.name + '\n----------------\n' + item.longname}else{return item.name}}(item)"
+                    class="column-list-entry">
+                    <td>
+                        <label class="selection_mark" v-if="item.selected">&check;</label>
+                        <label v-if="!item.selected">&nbsp;&nbsp;&nbsp;</label>
+                    </td>
+                    <td class="column-name" :name="item.name" :index="index">
+                        <span style="font-weight:bold;">{{item.name}}</span>
+                        <span v-if="item.longname" style="margin:0.15rem;">:</span>
+                        <span v-if="item.longname" style="vertical-align: bottom; max-width: 4rem; display: inline-block; white-space: nowrap; text-overflow: ellipsis;overflow:hidden">{{item.longname}}</span>
+                    </td>
+                </tr>
+            </table>
+    </fieldset>
+</script>
+<script>
+Vue.component("multi-select", {
+    template: "#multi-select-template",
+    props: {
+        legend_name: String,
+        columns: Array,
+        selected_columns: Array,
+    },
+    // data:function() {
+    //     return {
+    //     }
+    // },
+    methods: {
+        ClickOnColumnListItem: function(e){
+            var el = e.target;
+            while((el = el.parentElement) && !el.classList.contains('column-list-entry'));
+            if(!el) return;
+            var name = el.querySelector('td.column-name[name]');
+            if(!name) return;
+            var index = name.getAttribute('index');
+            name = name.getAttribute('name');
+            if(!name) return;
+            this.selected_columns = [name];
+            this.columns.forEach(function(column){
+                column.selected = false;
+            })
+            this.columns[index].selected = true;
+        },
+        AddMultipleToSelectedColumns: function(e) {
+
+            if(this.selected_columns.length < 1) {
+                this.AddToOrDeleteFromSelectedColumns(e);
+                return;
+            }
+            var el = e.target;
+            while((el = el.parentElement) && !el.classList.contains('column-list-entry'));
+            if(!el) return;
+            var name = el.querySelector('td.column-name[name]');
+            if(!name) return;
+            name = name.getAttribute('name');
+            if(!name) return;
+            var index = this.selected_columns.indexOf(name);
+            if(index < 0) {
+                var nameFrom = this.selected_columns[this.selected_columns.length-1];
+                var indexFrom = this.GetNameIndex(nameFrom);
+                var indexTo = this.GetNameIndex(name);
+                if(indexFrom < 0 || indexTo < 0) return;
+
+                if(indexFrom > indexTo) {
+                    var tmp = indexFrom;
+                    indexFrom = indexTo;
+                    indexTo = tmp;
+                }
+
+                for(var i = indexFrom; i <= indexTo; i++) {
+                    var itemName = this.GetIndexName(i);
+                    if(itemName && this.selected_columns.indexOf(itemName) < 0) {
+                        this.selected_columns.push(itemName);
+                        this.columns[i].selected = !this.columns[i].selected;
+                    }
+                }
+            }
+            this.selected_columns = this.selected_columns.sort();
+        },
+        AddToOrDeleteFromSelectedColumns: function(e) {
+            var el = e.target;
+            while((el = el.parentElement) && !el.classList.contains('column-list-entry'));
+            if(!el) return;
+            var name = el.querySelector('td.column-name[name]');
+            if(!name) return;
+            name = name.getAttribute('name');
+            if(!name) return;
+            var index = this.selected_columns.indexOf(name);
+            var indexExact = this.GetNameIndex(name);
+            if(index >= 0) {
+                this.selected_columns.splice(index, 1);
+                this.columns[indexExact].selected = !this.columns[indexExact].selected;
+            } else {
+                this.selected_columns.push(name);
+                this.columns[indexExact].selected = !this.columns[indexExact].selected;
+            }
+            this.selected_columns = this.selected_columns.sort();
+        },
+        GetNameIndex: function(name) {
+            var names = this.columns.map(function(_){return _.name});
+            return names.indexOf(name);
+        },
+        GetIndexName: function(index) {
+            var names = this.columns.map(function(_){return _.name});
+            return names[index];
+        },
+        ClickSelectAllButton:function() {
+            this.selected_columns = [];
+            for(var ii = 0; ii < this.columns.length; ii++){
+                var name = this.columns[ii].name;
+                this.columns[ii].selected = true;
+                this.selected_columns.push(name);
+            }
+        },
+        ClickClearAllButton:function() {
+            this.columns.forEach(function(col){
+                col.selected = false;
+            });
+            this.selected_columns = [];
+        },
+    },
+    watch: {
+        selected_columns:function() {
+            this.$emit("update_selected_columns", this.selected_columns);    
+        },
+    },
+})
+</script>
+
+<script>
+var Main = {
+    data: function(){
+        return {
+            legend_name: "Input Columns",
+            columns: 
+            [
+                {"name":"A","longname":"Copper"},
+                {"name":"B","longname":"Aluminum Aluminum"},
+                {"name":"C","longname":"Calcium"},
+                {"name":"D","longname":"Calcium"},
+                {"name":"E","longname":"Calcium"},
+                {"name":"F","longname":"Calcium"},
+                {"name":"G","longname":"Calcium"},
+            ],
+            selected_columns: [],
+        }
+    }, 
+    methods:{ 
+        onSelectedColumnsChange:function(new_columns) {
+            this.selected_columns = new_columns;
+        },
+    },
+    watch: {
+        selected_columns:function() {
+            console.log(this.selected_columns);
+        },
+    },
+};
+var Component = Vue.extend(Main);
+var mainComponent = new Component().$mount("#app");
+
+</script>
+
+</body>
+</html>

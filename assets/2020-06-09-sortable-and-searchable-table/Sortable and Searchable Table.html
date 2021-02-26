@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sortable and Searchable Table</title>
+
+    <style>
+    body {
+        font-size: 12px;
+        color: #566270;
+        background-color: #fffff3;
+        margin: 0;
+        overflow: hidden;
+    }
+    input {
+        height: 1.2rem;
+        font-size: 12px;
+        border: solid #e0e3da 2px;
+        margin: 1%;
+        color: #566270;
+    }
+    span {
+        font-size: 14px;
+        font-weight: bold;
+        color:#a593e0;
+    }
+    .checkbox{
+        vertical-align: -7px;
+    }
+    table {
+        /* width: 100%; */
+        border: 2px solid #a593e0;
+        border-radius: 3px;
+        
+    }
+    tbody{
+        display:block;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-height: calc(100vh - 19.5em);
+    }
+    thead tr{
+        display:block;
+        max-width:100%;
+        overflow-y:scroll;
+    } 
+    tr:hover {
+        background-color: #e0e3da;
+    }
+    th {
+        /* width:100%; */ 
+        width: 5.05rem;
+        min-width: 5.05rem;
+        padding: 0.2% 0.2%;
+        font-weight: bold;
+        color: #fffff3;
+        background-color: #a593e0;    
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+    }
+    td {
+        /* width:100%; */
+        width: 5rem;
+        min-width: 5rem;
+        text-align: center;
+        padding: 0.2% 0.2%;
+        white-space: pre-line;
+    }
+    th:nth-child(1), td:nth-child(1) {
+        width: 2rem;
+        min-width: 2rem;
+    }
+    .arrow {
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        height: 0;
+        margin-left: 5px;
+        opacity: 0.66;
+    }
+    .arrow.asc {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 4px solid #fffff3;
+    }
+    .arrow.dsc {
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #fffff3;
+    }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div><span>Search</span><input v-model="searchQuery"></div>     
+    <sortable_table  class="row" 
+                :rows="table_data" 
+                :columns="table_header" 
+                :filter-key="searchQuery" 
+                :selected="selected_rows" 
+                @update-table-data="onUpdateTableData"
+                @update-table-selected="onUpdateTableSelected">
+    </sortable_table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script type="text/x-template" id="sortable-table-template">
+<div>
+<table>
+    <thead><tr>
+    <th><input type="checkbox" v-model="selectAll"></th>
+    <th v-for="(key,index) in columns" v-if="index < 4" @click="sortBy(key)" :class="{active:sortKey==key}" >{{key|capitalize}}
+        <span class="arrow" :class="sortOrders[key]>0?'asc':'dsc'"></span>
+    </th>
+    <th v-else>{{key|capitalize}}</th>
+    </tr></thead>
+    <tbody>
+        <tr v-for="entry in filtered_rows">
+            <td><input type="checkbox" v-model="selected" :value="entry['id']"></td>
+            <td v-for="(key,index) in columns" v-if="index < 4">{{entry[key]}}</td>
+            <td v-else><input type="color" v-model="entry[key]" @change="getColor">
+        </tr>
+    </tbody>
+</table>
+</div>
+</script>
+<script>
+Vue.component('sortable_table', {
+    template: '#sortable-table-template',
+    props: {
+        rows: Array,
+        columns: Array,
+        filterKey: String,
+        selected: Array,
+    },
+    data: function () {
+        var sortOrders = {}
+        this.columns.forEach(function (key) {
+            sortOrders[key] = 1
+        })
+        return {
+            sortKey: '',
+            sortOrders: sortOrders,
+        }
+    },
+    computed: {
+    filtered_rows: function () {
+        var sortKey = this.sortKey
+        var filterKey = this.filterKey && this.filterKey.toLowerCase()
+        var order = this.sortOrders[sortKey] || 1
+        var rows = this.rows
+        if (filterKey) {
+        rows = rows.filter(function (row) {
+            return Object.keys(row).some(function (key) {
+            return String(row[key]).toLowerCase().indexOf(filterKey) > -1
+            })
+        })
+        }
+        if (sortKey) {
+        rows = rows.slice().sort(function (a, b) {
+            a = a[sortKey]
+            b = b[sortKey]
+            return (a === b ? 0 : a > b ? 1 : -1) * order
+        })
+        }
+        return rows
+    },
+    selectAll: {
+        get: function () {
+            return this.rows ? this.selected.length == this.rows.length : false;
+        },
+        set: function (value) {
+            var selected = [];
+            if (value) {
+                this.rows.forEach(function (row) {
+                    selected.push(row.id);
+                });
+            }
+            this.selected = selected;
+        }
+    },
+    },
+    filters: {
+        capitalize: function (str) {
+            return str.charAt(0).toUpperCase() + str.slice(1)
+        }
+    },
+    methods: {
+        sortBy: function (key) {
+            this.sortKey = key
+            this.sortOrders[key] = this.sortOrders[key] * -1
+        },
+        getColor:function(entry){
+            var new_color = entry['color'];
+            var rows = this.rows;
+            var index = -1;
+            for(var ii = 0; ii < rows.length; ii++) {
+                if(rows[ii]['name'] === entry['name']) {
+                    index = ii;
+                }
+            }
+            if(index > -1)
+                rows[index]['color'] = new_color;
+            this.$emit('update-table-data', rows);
+            console.log(rows[index]['color']);
+        },
+    },
+    watch: {
+        selected: function(){
+            this.$emit('update-table-selected', this.selected);
+        },
+    },
+
+})
+</script>
+
+<script>
+var Main = {
+    data: function(){
+        return {
+            searchQuery: '',
+            table_header: ['name', 'age', 'height', 'weight', 'color'],
+            table_data: [
+                {id: 1, name: 'Alice', age: 12, height: 155, weight: 45, color: '#ffffff'},
+                {id: 2, name: 'Ben', age: 13, height: 170, weight: 60, color: '#cccccc'},
+                {id: 3, name: 'Charlie', age: 17, height: 178, weight: 65, color: '#999999'},
+                {id: 4, name: 'Daniel', age: 14, height: 168, weight: 58, color: '#666666'},
+                {id: 5, name: 'Ethan', age: 11, height: 150, weight: 50, color: '#333333'},
+            ],
+            selected_rows: [],
+        }
+    },
+    methods:{ 
+        onUpdateTableData:function(new_table_data) {
+            this.table_data = new_table_data;
+        },
+        onUpdateTableSelected:function(new_table_selected){
+            this.table_selected = new_table_selected;
+        },
+    },
+};
+var Component = Vue.extend(Main);
+var mainComponent = new Component().$mount("#app");
+</script>
+
+</body>
+</html>

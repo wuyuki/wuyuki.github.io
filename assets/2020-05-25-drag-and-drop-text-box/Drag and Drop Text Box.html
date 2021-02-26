@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Drag and Drop Text Box</title>
+    <style>
+    body {
+        font-size: 12px;
+        color: #566270;
+        margin: 0;
+        overflow: hidden;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    fieldset {
+        width: 50%;
+        border: solid #a593e0 2px;
+    }
+    legend {
+        font-weight: 600;
+    }
+    table {
+        display:block;
+        overflow-y: auto;
+        overflow-x: hidden;
+        max-height: calc(100vh - 7em);
+    }
+    table[name="columns"] tr:hover{
+        background-color: rgba(165,147,224,0.2);
+    }
+    span[name="shortname"] {
+        font-weight:bold;
+    }
+    span[name="longname"] {
+        vertical-align: bottom; 
+        max-width: 4rem; 
+        display: inline-block; 
+        white-space: nowrap; 
+        text-overflow: ellipsis;
+        overflow:hidden;
+    }
+    div[name="dragged"] {
+        font-size:140%; 
+        font-weight:bold; 
+        background-color: rgba(165,147,224,0.3);
+        transform:translate(-100%, -100%);
+    }
+    table[name="input"] tr {
+        margin-bottom: 0.3rem;
+    }
+    table[name="input"] td[name="text-box"] {
+        border-bottom: 1px solid rgba(165,147,224,0.5);
+        width:70%;
+    }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <drag-and-drop-text-box :columns="columns":input="input"></drag-and-drop-text-box>
+</div>
+
+<!-- <script src="vue.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+<script type="text/x-template" id="drag-and-drop-text-box-template">
+<div @mousemove='onColumnMouseMove($event)' @mouseup='draggedData = null'>
+    <fieldset>
+    <legend>Columns</legend>
+        <table name="columns">
+            <tr v-for = "(item,index) in columns" 
+                @mousedown='onColumnMouseDown($event, item.name + ":" + item.longname)'
+                :title="function(item){if(item.longname){return 'Short Name: ' + item.name + '\n----------------\n' + 'Long Name: ' + item.longname}else{return item.name}}(item)">
+                <td :name="item.name" :index="index">
+                    <span name="shortname">{{item.name}}</span>
+                    <span v-if="item.longname" style="margin:0.15rem;">:</span>
+                    <span name="longname"v-if="item.longname">{{item.longname}}</span>
+                </td>
+            </tr>
+        </table>
+    </fieldset> 
+    <fieldset>
+        <legend>Input</legend>
+        <table name="input">
+            <tr v-for = "(option,index) in input">
+                <td style="font-weight: 600;">{{option.text}}</td>
+                <td name="text-box"
+                    v-bind:style="option.value? 'background-color:rgba(165,147,224,0.1);' : 'background-color:rgba(255, 255, 255, 1);' "
+                    @mouseover='onColumnMouseOver($event)'
+                    @mouseout='onColumnMouseOut($event)'
+                    @mouseup='onColumnMouseUp($event, option)'>
+                    {{option.value}}
+                    <span style="font-weight: bolder; float: right; cursor:default;" v-if="option.value">&times;</span>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <div name="dragged" :style='{position:"absolute",left:dragClientX, top:dragClientY}' v-if='draggedData'>{{draggedData}}</div>
+</div>
+</script>
+<script>
+Vue.component("drag-and-drop-text-box", {
+    template: "#drag-and-drop-text-box-template",
+    props: {
+        columns: Array,
+        input: Array,
+    },
+    data:function() {
+        return {
+            draggedData: null,
+            dragClientX: 0,
+            dragClientY: 0,
+        }
+    },
+    methods: {
+        onColumnMouseDown: function(e, item) {
+            this.draggedData = item;
+            this.dragClientX = e.clientX + 'px';
+            this.dragClientY = e.clientY + 'px';
+        },
+        onColumnMouseMove: function(e) {
+            if(this.draggedData) {
+                this.dragClientX = e.clientX + "px";
+                this.dragClientY = e.clientY + "px";
+            }
+        },
+        onColumnMouseOver: function(e) {
+            if(this.draggedData) {
+                e.target.style.boxShadow = '0px 0px 0px 2px #a593e0'
+            }
+        },
+        onColumnMouseOut: function(e) {
+            e.target.style.boxShadow = ''
+        },
+        onColumnMouseUp: function(e, item) {
+            item.value = this.draggedData;
+            this.draggedData = null;
+            e.target.style.boxShadow = '';
+        },
+    },
+})
+</script>
+
+<script>
+var Main = {
+    data: function(){
+        return {
+            columns: 
+            [
+                {"name":"A","longname":"Copper"},
+                {"name":"B","longname":"Aluminum Aluminum"},
+                {"name":"C","longname":"Calcium"},
+                {"name":"D","longname":"Calcium"},
+                {"name":"E","longname":"Calcium"},
+                {"name":"F","longname":"Calcium"},
+                {"name":"G","longname":"Calcium"},
+            ],
+            input: [
+                {text: "Material A", value: null},
+                {text: "Material B", value: null},
+                {text: "Material C", value: null},
+            ],
+        }
+    }, 
+};
+var Component = Vue.extend(Main);
+var mainComponent = new Component().$mount("#app");
+
+</script>
+
+</body>
+</html>
