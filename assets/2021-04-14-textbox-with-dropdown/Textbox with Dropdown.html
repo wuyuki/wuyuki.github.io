@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Textbox with Dropdown</title>
+
+    <style>
+        body {
+            font-size: 12px;
+            color: #566270;
+            background-color: #fffff3;
+            margin: 0;
+            overflow: hidden;
+        }
+        input {
+            height: 1.2rem;
+            font-size: 12px;
+            border: solid #e0e3da 2px;
+            margin: 1%;
+            color: #566270;
+        }
+        input:disabled{
+            cursor: not-allowed;
+        }
+        span {
+            font-size: 14px;
+            font-weight: bold;
+            color:#a593e0;
+        }
+        button{
+            height: 1.2rem;
+            font-size: 12px;
+            color: #566270;
+            border: solid #e0e3da 2px;
+        }
+        .row {
+            margin: 0.6% 0;
+        }
+        .column {
+            display: inline-block;
+            margin: 0% 2%;
+        }
+        .dropdown-content {
+            position: absolute;
+            background-color: #fff;
+            min-width: 15em;
+            max-width: 15em;
+            max-height: 15em;
+            border: solid #e0e3da 2px;
+            box-shadow: 0px -8px 34px 0px rgba(0, 0, 0, 0.05);
+            overflow: auto;
+            z-index: 1;
+        }
+        .dropdown-item {
+            font-size: .9em;
+            line-height: 1em;
+            padding: 8px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+        }
+        .dropdown-item:hover{
+            background-color: #e0e3da;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div name="text" class="row">
+            <div class="column"><span>Text</span></div>
+            <div class="column">
+                <dropdown   type = "text"
+                            :options = "text_options" 
+                            :value = "text_value"
+                            :disabled = "text_disabled" 
+                            @on_change_input_value = "onTextChange">
+                </dropdown>
+            </div>
+            <div class="column"><button @click="onClickDisabledButton">{{button_label}}</button></div>
+            <div class="column"><span>{{text_value}}</span></div>
+        </div>
+
+        <div name="number" class="row">
+            <div class="column"><span>Number</span></div>
+            <div class="column">
+                <dropdown   type = "number"
+                            :options = "number_options" 
+                            :value = "number_value"
+                            :disabled = "number_disabled"
+                            @on_change_input_value = "onNumberChange">
+                </dropdown>
+            </div>
+            <div class="column"><span>{{number_value}}</span></div>
+        </div>
+
+        <div name="percentage" class="row">
+            <div class="column"><span>Percentage(%)</span></div>
+            <div class="column">
+                <dropdown   type = "percentage"
+                            :options = "percentage_options" 
+                            :value = "percentage_value"
+                            :disabled = "percentage_disabled"
+                            @on_change_input_value = "onPercentageChange">
+                </dropdown>
+            </div>
+            <div class="column"><span>{{percentage_value}}</span></div>
+        </div>
+    </div>  
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+<script type="text/x-template" id="dropdown">
+    <div class="dropdown" v-if="options">
+        <!-- Dropdown Input -->
+        <input  :type="type"
+                :disabled="disabled"
+                v-model="input_value"
+                @focus="showOptions()"
+                @blur="exit()"
+                @keyup="keyMonitor"
+                @input="input_value = inputRule(type)" />
+        <!-- Dropdown Menu -->
+        <div class="dropdown-content" v-show="optionsShown">
+            <div    class="dropdown-item"
+                    @mousedown="selectOption(option)"
+                    v-for="(option, index) in filteredOptions"
+                    :key="index">
+                    {{ option.name || '-' }}
+            </div>
+        </div>
+    </div>
+</script>
+<script>
+    Vue.component('dropdown', {
+        template: '#dropdown',
+        props: {
+            type: String,
+            options: Array,
+            disabled: Boolean,
+            value: String
+        },
+        data: function () {
+            return {
+                selected: {},
+                optionsShown: false,
+                maxItem: 20, //the max number of option that shown on the list
+                input_value: '',
+            }
+        },
+        created: function () {
+            this.input_value = this.value;
+        },
+        computed: {
+            filteredOptions:function() {
+                const filtered = [];
+                const regOption = new RegExp(this.input_value, 'ig'); 
+                for(var ii = 0; ii < this.options.length; ii++){
+                    if (this.input_value.length < 1 || this.options[ii].name.match(regOption)) {
+                        if (filtered.length < this.maxItem) 
+                            filtered.push(this.options[ii]);
+                    }
+                }
+                return filtered;
+            },
+        },
+        methods: {
+            inputRule:function(type){
+                var value;
+                switch(type){
+                    case 'text':
+                        value = this.input_value.replace(/[^a-zA-Z0-9]/g,'');
+                        break;
+                    case 'number':
+                        value = this.input_value.replace(/^(?![+-]?\d+(\.\d+)?$)/g,'');
+                        break;
+                    case 'percentage':
+                        value = this.input_value.replace(/[^\d]/g,'');
+                        value = value > 100 ? '100' : value;
+                        value = value < 0 ? '0' : value;
+                        break;
+                    default:
+                        console.log("no limitation");
+                }
+                return value;
+            },
+            selectOption: function (option) {
+                this.selected = option;
+                this.optionsShown = false;
+                this.input_value = this.selected.name;
+            },
+            showOptions: function () {
+                if (!this.disabled) {
+                    this.input_value = '';
+                    this.optionsShown = true;
+                }
+            },
+            exit: function () {
+                if (!this.selected.id) 
+                    this.selected = { id: "0", name: this.input_value };
+                else 
+                    this.input_value = this.selected.name;
+
+                this.optionsShown = false;
+            },
+            // Selecting when pressing Enter
+            keyMonitor: function (event) {
+                if (event.key === "Enter") {
+                    if (this.filteredOptions[0]) 
+                        this.selectOption(this.filteredOptions[0]);
+                    else 
+                        this.selectOption({ id: "0", name: this.input_value });
+                }
+            },
+        },
+        watch: {
+            value:function() {
+                this.input_value = this.value;
+            },
+            input_value:function() {
+                if (this.filteredOptions.length === 0) 
+                    this.selected = { id: "0", name: this.input_value };
+                else 
+                    this.selected = this.filteredOptions[0];
+                this.$emit('on_change_input_value', this.input_value);
+            }
+        }
+    })
+</script>
+
+
+<script>
+    var Main = {
+        data: function () {
+            return {
+                text_value: 'ccc',
+                text_disabled: false,
+                text_options: [
+                    { id: 1, name: 'a' },
+                    { id: 2, name: 'bb' },
+                    { id: 3, name: 'ccc' },
+                    { id: 4, name: 'dddd' },
+                    { id: 5, name: 'eeeee' },
+                    { id: 6, name: 'fffff ' },
+                    { id: 7, name: 'gggggg' },
+                    { id: 8, name: 'hhhhhhh' },
+                    { id: 9, name: 'iiiiiiii' },
+                ],
+                button_label: "Disable",
+
+                number_value: '50',
+                number_disabled: false,
+                number_options: [
+                    { id: 1, name: '0' },
+                    { id: 2, name: '10' },
+                    { id: 3, name: '20' },
+                    { id: 4, name: '30' },
+                    { id: 5, name: '40' },
+                    { id: 6, name: '50 ' },
+                    { id: 7, name: '60' },
+                    { id: 8, name: '80' },
+                    { id: 9, name: '100' },
+                ],
+
+                percentage_value: '10',
+                percentage_disabled: false,
+                percentage_options: [
+                    { id: 1, name: '0' },
+                    { id: 2, name: '10' },
+                    { id: 3, name: '20' },
+                    { id: 4, name: '30' },
+                    { id: 5, name: '40' },
+                    { id: 6, name: '50 ' },
+                    { id: 7, name: '60' },
+                    { id: 8, name: '80' },
+                    { id: 9, name: '100' },
+                ],
+            }
+        },
+        methods: {
+            onTextChange: function (new_text_value) {
+                this.text_value = new_text_value;
+            },
+            onClickDisabledButton:function(){
+                this.text_disabled = !this.text_disabled;
+                this.button_label = this.text_disabled ? "Enable" : "Disable";
+            },
+            onNumberChange: function (new_number_value) {
+                this.number_value = new_number_value;
+            },
+            onPercentageChange: function (new_percentage_value) {
+                this.percentage_value = new_percentage_value;
+            },
+        },
+    };
+    var Component = Vue.extend(Main);
+    var mainComponent = new Component().$mount("#app");
+</script>
+</html>
